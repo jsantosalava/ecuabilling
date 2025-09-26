@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es-es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://kit.fontawesome.com/f2b35bb065.js" crossorigin="anonymous"></script>
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="../media/img/logo/logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../media/img/logo/logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../media/img/logo/logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../media/img/logo/logo.png">
+    <link rel="apple-touch-icon-precomposed" href="../media/img/logo/logo.png">
+
+    <title>ECUABILLING</title>
+    
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ec4b6;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .login-container {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            background: white;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .login-image {
+            flex: 1;
+            background-color: var(--primary-color);
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-image-content {
+            color: white;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .login-image-content h2 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .login-image-content p {
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .login-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('ruta/a/tu/imagen.jpg'); /* Reemplaza con la ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+        
+        .login-form-container {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo-container img {
+            max-width: 120px;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-container h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo-container p {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #495057;
+            display: flex;
+            align-items: center;
+        }
+        
+        .material-icons {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+        
+        .form-control {
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid #e1e5eb;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            height: auto;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.15);
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 10px;
+            top: 38px;
+            color: #6c757d;
+        }
+        
+        .btn-login {
+            background-color: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .btn-login:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .additional-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 5px;
+        }
+        
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .forgot-password:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background-color: white;
+            padding: 1.5rem;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+            color: #495057;
+            margin: 0 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .login-container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+            
+            .login-image {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-image">
+            <div class="login-image-content">
+                <h2>Bienvenido a ECUABILLING</h2>
+                <p>Sistema de gestión integral para su empresa</p>
+            </div>
+        </div>
+        
+        <div class="login-form-container">
+            <div class="logo-container">
+                <!-- Puedes agregar tu logo aquí -->
+                <h1>ECUABILLING</h1>
+                <p>Ingrese sus credenciales para acceder al sistema</p>
+            </div>
+            
+            <form id="ingresar" action="">
+                <div class="form-group">
+                    <label for="usuario"><i class="material-icons">account_circle</i>Usuario</label>
+                    <div class="position-relative">
+                        <input class="form-control pl-5" id="usuario" type="text" placeholder="Ingrese su usuario" required>
+                        <span class="material-icons input-icon">person</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="material-icons">vpn_key</i>Contraseña</label>
+                    <div class="position-relative">
+                        <input class="form-control pl-5" id="password" type="password" placeholder="Ingrese su contraseña" required>
+                        <span class="material-icons input-icon">lock</span>
+                    </div>
+                </div>
+                
+                <div class="additional-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Recordarme</label>
+                    </div>
+                    <a href="#" class="forgot-password">¿Olvidó su contraseña?</a>
+                </div>
+                
+                <button class="btn btn-login" type="submit">Ingresar al sistema</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-map-marked-alt"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="copyright">
+            © 2025 ECUABILLING - Todos los derechos reservados
+        </div>
+    </footer>
+</body>
+
+<!-- bootstrap js, Popper.js -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- <script src="js/login.js"></script> -->
+<script src="../js/login.js"></script>
+
+</html>
